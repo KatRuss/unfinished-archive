@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b00q5hp6k0pu"]
+
+[ext_resource type="PackedScene" uid="uid://b4tbowtgl5hy1" path="res://scenes/Platforms/playform_base.tscn" id="1_aid81"]
+[ext_resource type="Script" path="res://scripts/Platforms/CoreFilePlatform.gd" id="2_n6yb0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jaaon"]
+albedo_color = Color(0, 0.764706, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wcly8"]
+material = SubResource("StandardMaterial3D_jaaon")
+size = Vector3(4, 100, 4)
+
+[node name="Core File Platform Base" instance=ExtResource("1_aid81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_n6yb0")
+damagedTimer = 1.0
+HealthyColour = Color(0, 0.764706, 0, 1)
+WarningColour = Color(0.854902, 1, 0, 1)
+DamagedColour = Color(0.317647, 0.521569, 0.317647, 1)
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_wcly8")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+[connection signal="body_exited" from="PlayerEnterComponent" to="." method="_on_player_enter_component_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

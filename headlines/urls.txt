@@ -1,0 +1,2 @@
+https://www.theguardian.com/world/rss
+http://feeds.bbci.co.uk/news/england/london/rss.xml#

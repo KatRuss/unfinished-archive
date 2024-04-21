@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="floatingInt" load_steps=2 format=3 uid="uid://b6nkyxx2sjh8f"]
+
+[ext_resource type="Script" path="res://scripts/resources/floatingInts.gd" id="1_x3oip"]
+
+[resource]
+script = ExtResource("1_x3oip")
+startingNum = 0

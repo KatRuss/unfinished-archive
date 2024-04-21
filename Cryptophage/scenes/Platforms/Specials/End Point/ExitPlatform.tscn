@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bajgenjd4lf6v"]
+
+[ext_resource type="PackedScene" uid="uid://b4tbowtgl5hy1" path="res://scenes/Platforms/playform_base.tscn" id="1_wbh6x"]
+[ext_resource type="Script" path="res://scripts/Platforms/ExitPlatform.gd" id="2_uru0j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7spff"]
+size = Vector3(10.4948, 18.4951, 10.3343)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jf6de"]
+albedo_color = Color(1, 0.760784, 0.168627, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bg7tx"]
+material = SubResource("StandardMaterial3D_jf6de")
+size = Vector3(10, 100, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bn7o"]
+
+[node name="ExitPlatform" instance=ExtResource("1_wbh6x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_uru0j")
+VirusCounter = null
+
+[node name="CollitionBox" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145353, -8.97755, 0.0700126)
+shape = SubResource("BoxShape3D_7spff")
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -49.7151, 0)
+mesh = SubResource("BoxMesh_bg7tx")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24893, 1.75743)
+radius = 0.2
+height = 4.0
+material = SubResource("StandardMaterial3D_6bn7o")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24893, -1.73956)
+radius = 0.2
+height = 4.0
+material = SubResource("StandardMaterial3D_6bn7o")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.94457, 0)
+size = Vector3(0.2, 0.478516, 3.28027)

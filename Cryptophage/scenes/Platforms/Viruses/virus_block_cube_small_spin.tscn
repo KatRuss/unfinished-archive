@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsnqfvy4x38ic"]
+
+[ext_resource type="PackedScene" uid="uid://dw7g77hix71ot" path="res://scenes/Platforms/Viruses/virus_block_cube_spin.tscn" id="1_sxbp7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8sv2i"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fykaf"]
+albedo_color = Color(1, 0.0941176, 0.0980392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_71bp0"]
+material = SubResource("StandardMaterial3D_fykaf")
+size = Vector3(4, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rx8y3"]
+size = Vector3(4.1, 4.1, 4.1)
+
+[node name="VirusBlock" instance=ExtResource("1_sxbp7")]
+
+[node name="CollitionBox" parent="." index="0"]
+shape = SubResource("BoxShape3D_8sv2i")
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_71bp0")
+
+[node name="Hitbox" parent="PlayerEnterComponent" index="0"]
+shape = SubResource("BoxShape3D_rx8y3")

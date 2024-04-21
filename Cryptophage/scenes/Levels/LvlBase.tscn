@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://rgtiui1v64yr"]
+
+[ext_resource type="PackedScene" uid="uid://dneba87mog78v" path="res://scenes/misc/enviroment.tscn" id="1_lt4p7"]
+[ext_resource type="PackedScene" uid="uid://ba5mnbnpx8aqu" path="res://scenes/level_master.tscn" id="2_kuyyw"]
+[ext_resource type="PackedScene" uid="uid://c3oryj30mv30s" path="res://scenes/kill_zone.tscn" id="3_wgk8d"]
+[ext_resource type="PackedScene" uid="uid://bajgenjd4lf6v" path="res://scenes/Platforms/Specials/End Point/ExitPlatform.tscn" id="4_r0ext"]
+[ext_resource type="PackedScene" uid="uid://bwsnkf6sw66r3" path="res://scenes/ui.tscn" id="5_eqtit"]
+[ext_resource type="PackedScene" uid="uid://b1cych6vncump" path="res://scenes/Player/player.tscn" id="6_q1sgp"]
+
+[node name="LevelBase" type="Node3D"]
+
+[node name="Enviroment" parent="." instance=ExtResource("1_lt4p7")]
+
+[node name="LevelMaster" parent="." node_paths=PackedStringArray("PlatformsHolder") instance=ExtResource("2_kuyyw")]
+PlatformsHolder = NodePath("../Platforms")
+starting_time = 95
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="ExitPlatform" parent="Platforms" instance=ExtResource("4_r0ext")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -130.316)
+
+[node name="KillZone" parent="." instance=ExtResource("3_wgk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.9953, -57.9833, 0)
+
+[node name="UI" parent="." instance=ExtResource("5_eqtit")]
+
+[node name="Player" parent="." instance=ExtResource("6_q1sgp")]
+
+[editable path="Enviroment"]

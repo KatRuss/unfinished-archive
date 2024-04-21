@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cte83r18cq3p3"]
+
+[ext_resource type="PackedScene" uid="uid://b00q5hp6k0pu" path="res://scenes/Platforms/Core Files/CorePlatformBase.tscn" id="1_7eqom"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hlcgp"]
+size = Vector3(8, 5, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grqht"]
+albedo_color = Color(0, 0.764706, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_818b7"]
+material = SubResource("StandardMaterial3D_grqht")
+size = Vector3(8, 100, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xshb"]
+size = Vector3(8, 0.575, 8)
+
+[node name="Core File Platform Base" instance=ExtResource("1_7eqom")]
+
+[node name="CollitionBox" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0391173, -2.25807, 0.0697069)
+shape = SubResource("BoxShape3D_hlcgp")
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_818b7")
+
+[node name="Hitbox" parent="PlayerEnterComponent" index="0"]
+shape = SubResource("BoxShape3D_0xshb")

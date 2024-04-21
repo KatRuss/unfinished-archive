@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://du50l46anr0j3"]
+
+[ext_resource type="PackedScene" uid="uid://b4tbowtgl5hy1" path="res://scenes/Platforms/playform_base.tscn" id="1_br2vl"]
+[ext_resource type="Script" path="res://scripts/Platforms/VirusPlatform.gd" id="2_qlug5"]
+[ext_resource type="Resource" uid="uid://btaop3mpwntrw" path="res://resources/numOfViruses.tres" id="3_02etm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vucem"]
+albedo_color = Color(1, 0.0941176, 0.0980392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lc4k3"]
+material = SubResource("StandardMaterial3D_vucem")
+size = Vector3(4, 100, 4)
+
+[node name="VirusBlock" instance=ExtResource("1_br2vl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_qlug5")
+destroyTimer = 1.5
+virusTotal = ExtResource("3_02etm")
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_lc4k3")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://du35uyi6hk28d"]
+
+[ext_resource type="PackedScene" uid="uid://ba5mnbnpx8aqu" path="res://scenes/level_master.tscn" id="1_mfs1n"]
+[ext_resource type="PackedScene" uid="uid://b1cych6vncump" path="res://scenes/Player/player.tscn" id="2_q0wrr"]
+[ext_resource type="PackedScene" uid="uid://cq4cpek0yol6l" path="res://scenes/Platforms/Specials/Checkpoints/CheckpointPlatformBase.tscn" id="4_xed8r"]
+[ext_resource type="PackedScene" uid="uid://du50l46anr0j3" path="res://scenes/Platforms/Viruses/VirusBlockBase.tscn" id="5_7l4qv"]
+[ext_resource type="PackedScene" uid="uid://dneba87mog78v" path="res://scenes/misc/enviroment.tscn" id="5_p1p2k"]
+[ext_resource type="PackedScene" uid="uid://bajgenjd4lf6v" path="res://scenes/Platforms/Specials/End Point/ExitPlatform.tscn" id="5_q784f"]
+[ext_resource type="PackedScene" uid="uid://b00q5hp6k0pu" path="res://scenes/Platforms/Core Files/CorePlatformBase.tscn" id="6_64nru"]
+[ext_resource type="PackedScene" uid="uid://c3oryj30mv30s" path="res://scenes/kill_zone.tscn" id="11_47any"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="LevelMaster" parent="." node_paths=PackedStringArray("PlatformsHolder") instance=ExtResource("1_mfs1n")]
+PlatformsHolder = NodePath("../Platforms")
+
+[node name="Enviroment" parent="." instance=ExtResource("5_p1p2k")]
+
+[node name="Player" parent="." instance=ExtResource("2_q0wrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.62812, 1.44837, 0)
+top_level = true
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Core File Platform Base" parent="Platforms" instance=ExtResource("6_64nru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.67091, 0.694003, 3.80988)
+
+[node name="Core File Platform Base2" parent="Platforms" instance=ExtResource("6_64nru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.97069, 0.694003, -3.4351)
+
+[node name="Core File Platform Base3" parent="Platforms" instance=ExtResource("6_64nru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7391, 0.694003, -10.2531)
+
+[node name="VirusBlock" parent="Platforms" instance=ExtResource("5_7l4qv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.018, 0.858666, -7.066)
+destroyTimer = 0.0
+
+[node name="VirusBlock2" parent="Platforms" instance=ExtResource("5_7l4qv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5308, 0.858665, 5.61925)
+destroyTimer = 0.0
+
+[node name="VirusBlock3" parent="Platforms" instance=ExtResource("5_7l4qv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.33785, 0.858664, 9.86273)
+destroyTimer = 0.0
+
+[node name="StartingPlatform" parent="Platforms" instance=ExtResource("4_xed8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.01268, 0, -0.124358)
+
+[node name="ExitPlatform" parent="Platforms" instance=ExtResource("5_q784f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.788, 0.663603, 0.39175)
+
+[node name="KillZone" parent="." instance=ExtResource("11_47any")]

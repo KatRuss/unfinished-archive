@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq4cpek0yol6l"]
+
+[ext_resource type="PackedScene" uid="uid://b4tbowtgl5hy1" path="res://scenes/Platforms/playform_base.tscn" id="1_fhmwi"]
+[ext_resource type="Script" path="res://scripts/Platforms/CheckpointPlatform.gd" id="2_qhloq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8s6j"]
+size = Vector3(8.28921, 0.54, 8.3409)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju7qv"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3mbs"]
+material = SubResource("StandardMaterial3D_ju7qv")
+size = Vector3(8, 100, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ui2p8"]
+size = Vector3(8.70471, 1, 8.78354)
+
+[node name="CheckpointPlatform" instance=ExtResource("1_fhmwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_qhloq")
+
+[node name="CollitionBox" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0584627, 0, 0.0663085)
+shape = SubResource("BoxShape3D_v8s6j")
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_v3mbs")
+
+[node name="Hitbox" parent="PlayerEnterComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0582887, 0, 0.0904387)
+shape = SubResource("BoxShape3D_ui2p8")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+[connection signal="body_exited" from="PlayerEnterComponent" to="." method="_on_player_enter_component_body_exited"]

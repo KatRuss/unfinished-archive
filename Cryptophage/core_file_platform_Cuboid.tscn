@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://32fjd25evmvf"]
+
+[ext_resource type="PackedScene" uid="uid://b00q5hp6k0pu" path="res://scenes/Platforms/Core Files/CorePlatformBase.tscn" id="1_w27kd"]
+[ext_resource type="Script" path="res://scripts/Platforms/CoreFileSpinning.gd" id="2_qx654"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yipsu"]
+size = Vector3(8, 24, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_al1if"]
+albedo_color = Color(0, 0.764706, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oxs2u"]
+material = SubResource("StandardMaterial3D_al1if")
+size = Vector3(8, 24, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p6c1r"]
+size = Vector3(8.5, 24.6, 8.6)
+
+[node name="Core File Platform Base" instance=ExtResource("1_w27kd")]
+script = ExtResource("2_qx654")
+rotateX = false
+rotateY = true
+rotateZ = false
+spinSpeed = 0.5
+reverse = false
+
+[node name="CollitionBox" parent="." index="0"]
+shape = SubResource("BoxShape3D_yipsu")
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_oxs2u")
+
+[node name="Hitbox" parent="PlayerEnterComponent" index="0"]
+shape = SubResource("BoxShape3D_p6c1r")

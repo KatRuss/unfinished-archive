@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgsq2qhuperby"]
+
+[ext_resource type="PackedScene" uid="uid://rgtiui1v64yr" path="res://scenes/Levels/LvlBase.tscn" id="1_l7b0s"]
+[ext_resource type="PackedScene" uid="uid://bwsnkf6sw66r3" path="res://scenes/ui.tscn" id="2_67o8s"]
+
+[node name="LevelBase" instance=ExtResource("1_l7b0s")]
+
+[node name="UI2" parent="." index="5" node_paths=PackedStringArray("level_label") instance=ExtResource("2_67o8s")]
+level_label = NodePath("../UI/Label")
+
+[editable path="Enviroment"]

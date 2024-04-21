@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://da1c1kh8a68x"]
+
+[ext_resource type="PackedScene" uid="uid://cq4cpek0yol6l" path="res://scenes/Platforms/Specials/Checkpoints/CheckpointPlatformBase.tscn" id="1_yfchs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1lny2"]
+size = Vector3(12, 80, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wlo3r"]
+size = Vector3(12, 100, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxq2y"]
+size = Vector3(12, 1, 12)
+
+[node name="CheckpointPlatform" instance=ExtResource("1_yfchs")]
+
+[node name="CollitionBox" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0584627, -39.7743, 0.0663085)
+shape = SubResource("BoxShape3D_1lny2")
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_wlo3r")
+
+[node name="Hitbox" parent="PlayerEnterComponent" index="0"]
+shape = SubResource("BoxShape3D_vxq2y")

@@ -1,0 +1,375 @@
+[gd_scene load_steps=19 format=3 uid="uid://bx8jiirlsqbmr"]
+
+[ext_resource type="PackedScene" uid="uid://dneba87mog78v" path="res://scenes/misc/enviroment.tscn" id="1_yj2rk"]
+[ext_resource type="PackedScene" uid="uid://ba5mnbnpx8aqu" path="res://scenes/level_master.tscn" id="2_eeckw"]
+[ext_resource type="PackedScene" uid="uid://cq4cpek0yol6l" path="res://scenes/Platforms/Specials/Checkpoints/CheckpointPlatformBase.tscn" id="3_8vidf"]
+[ext_resource type="PackedScene" uid="uid://b1cych6vncump" path="res://scenes/Player/player.tscn" id="4_ju8c4"]
+[ext_resource type="Resource" uid="uid://00ymwlm1gbu3" path="res://resources/lvl1Score.tres" id="4_p75xp"]
+[ext_resource type="PackedScene" uid="uid://ti2fdkoo3h3q" path="res://scenes/Platforms/Viruses/VirusBlockSquare.tscn" id="5_mxbpr"]
+[ext_resource type="PackedScene" uid="uid://cte83r18cq3p3" path="res://scenes/Platforms/Core Files/core_file_platform_big.tscn" id="6_xlcqs"]
+[ext_resource type="PackedScene" uid="uid://bh04n8854kuat" path="res://scenes/Platforms/Viruses/virus_block_big.tscn" id="7_gacti"]
+[ext_resource type="PackedScene" uid="uid://c3oryj30mv30s" path="res://scenes/kill_zone.tscn" id="7_nh1i6"]
+[ext_resource type="Script" path="res://scripts/SpinningPlatform.gd" id="8_1ho8s"]
+[ext_resource type="PackedScene" uid="uid://da1c1kh8a68x" path="res://scenes/Platforms/Specials/Checkpoints/checkpoint_platform_big.tscn" id="9_5a46s"]
+[ext_resource type="PackedScene" uid="uid://bo50beba5yyx7" path="res://scenes/Platforms/Core Files/core_file_platform_XL.tscn" id="9_e61as"]
+[ext_resource type="PackedScene" uid="uid://bajgenjd4lf6v" path="res://scenes/Platforms/Specials/End Point/ExitPlatform.tscn" id="11_vxhpe"]
+[ext_resource type="PackedScene" uid="uid://bwsnkf6sw66r3" path="res://scenes/ui.tscn" id="13_lial7"]
+
+[sub_resource type="Curve3D" id="Curve3D_nlkg7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -29.8436, -0.337721, 12.7936, 0, 0, 0, 0, 0, 0, 32.1002, 0, 12.6609, 0, 0, 0, 0, 0, 0, 31.9716, 0, -3.29216, 0, 0, 0, 0, 0, 0, -32.0979, 0, -3.16351, 0, 0, 0, 0, 0, 0, -32.2265, 0, 12.6609),
+"tilts": PackedFloat32Array(-2.81176, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_3oeem"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -6.16339, -5.86912, -29.4446, 0, 0, 0, 0, 0, 0, -6.27369, -5.86912, 18.6462, 0, 0, 0, 0, 0, 0, 1.77821, -5.86912, 18.7565, 0, 0, 0, 0, 0, 0, 1.99881, -5.86912, -29.224, 0, 0, 0, 0, 0, 0, -6.16339, -5.86912, -29.4446),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_4vroe"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.49852, 0.798972, -60.8925, 0, 0, 0, 0, 0, 0, -0.785454, 0.697104, 67.0484, 0, 0, 0, 0, 0, 0, 127.983, 0.696074, 67.2338, 0, 0, 0, 0, 0, 0, 127.506, 0.798522, -61.4155, 0, 0, 0, 0, 0, 0, -0.49852, 0.798972, -60.8925),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_hcvvx"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -23.4416, -7.1143, -23.192, 0, 0, 0, 0, 0, 0, 24.3921, -7.1143, -23.4353, 0, 0, 0, 0, 0, 0, 24.6353, -7.1143, 16.5342, 0, 0, 0, 0, 0, 0, -23.6037, -7.1143, 16.6964, 0, 0, 0, 0, 0, 0, -23.4416, -7.1143, -23.192),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Lvl1" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("4_ju8c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.14817, -6.03699, 118.523)
+max_speed = 15.0
+ground_jump_velocity = 15.0
+
+[node name="Enviroment" parent="." instance=ExtResource("1_yj2rk")]
+
+[node name="LevelMaster" parent="." node_paths=PackedStringArray("PlatformsHolder", "end_point") instance=ExtResource("2_eeckw")]
+PlatformsHolder = NodePath("../Platforms")
+score_int = ExtResource("4_p75xp")
+end_point = NodePath("../ExitPlatform")
+virusThreshold = 2
+starting_time = 95
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Core File Platform Base" parent="Platforms" instance=ExtResource("6_xlcqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21206, 0, -10.4955)
+
+[node name="Core File Platform Base3" parent="Platforms" instance=ExtResource("6_xlcqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8981, 0, -31.9302)
+
+[node name="Core File Platform Base2" parent="Platforms" instance=ExtResource("6_xlcqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21206, 2.45013, -30.6812)
+
+[node name="VirusBlockSquare" parent="Platforms" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2605, 0, -10.4902)
+
+[node name="VirusBlockSquare2" parent="Platforms" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3892, 7.76863, -44.8685)
+
+[node name="VirusBlockSquare3" parent="Platforms" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.067, 6.38733, -38.4095)
+
+[node name="VirusBlockSquare4" parent="Platforms" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1224, 0, -14.5424)
+
+[node name="VirusBlockSquare5" parent="Platforms" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9012, 0, -33.3389)
+
+[node name="CheckpointPlatform" parent="Platforms" instance=ExtResource("3_8vidf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61567, 8.83383, 13.6036)
+
+[node name="CheckpointPlatform3" parent="Platforms" instance=ExtResource("3_8vidf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61567, -8.00912, 116.522)
+
+[node name="CheckpointPlatform4" parent="Platforms" instance=ExtResource("3_8vidf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9378, 3.62589, 56.9978)
+
+[node name="CheckpointPlatform5" parent="Platforms" instance=ExtResource("3_8vidf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.8484, -5.37326, 81.4235)
+
+[node name="CheckpointPlatform6" parent="Platforms" instance=ExtResource("3_8vidf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4647, 3.87146, 45.539)
+
+[node name="CheckpointPlatform7" parent="Platforms" instance=ExtResource("3_8vidf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77473, 0.960501, 46.4263)
+
+[node name="CheckpointPlatform2" parent="Platforms" instance=ExtResource("3_8vidf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61567, 12.4353, -58.566)
+
+[node name="CheckpointPlatform8" parent="Platforms" instance=ExtResource("9_5a46s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.285, -0.525741, -9.61135)
+
+[node name="CheckpointPlatform9" parent="Platforms" instance=ExtResource("9_5a46s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.578, 9.88324, -19.0937)
+
+[node name="SpinningPlatforms1" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.99105, 93.2302)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms1"]
+curve = SubResource("Curve3D_nlkg7")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms1/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8436, -0.337721, 12.7936)
+rotation_mode = 0
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms1/Path3D/PathFollow3D" instance=ExtResource("6_xlcqs")]
+
+[node name="PathFollow3D2" type="PathFollow3D" parent="Platforms/SpinningPlatforms1/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2081, -0.0757406, 12.6907)
+progress = 48.0525
+rotation_mode = 0
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms1/Path3D/PathFollow3D2" instance=ExtResource("6_xlcqs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="PathFollow3D3" type="PathFollow3D" parent="Platforms/SpinningPlatforms1/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2697, 0, -3.19128)
+progress = 128.14
+rotation_mode = 0
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms1/Path3D/PathFollow3D3" instance=ExtResource("5_mxbpr")]
+
+[node name="SpinningPlatforms2" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.02106, 60.2629)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms2"]
+curve = SubResource("Curve3D_nlkg7")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms2/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.7487, 0, -3.18028)
+progress = 133.619
+rotation_mode = 0
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms2/Path3D/PathFollow3D" instance=ExtResource("6_xlcqs")]
+
+[node name="PathFollow3D2" type="PathFollow3D" parent="Platforms/SpinningPlatforms2/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4468, 0, -3.27504)
+progress = 86.4234
+rotation_mode = 0
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms2/Path3D/PathFollow3D2" instance=ExtResource("6_xlcqs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="PathFollow3D3" type="PathFollow3D" parent="Platforms/SpinningPlatforms2/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5705, -0.150093, 12.7199)
+progress = 34.4147
+rotation_mode = 0
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms2/Path3D/PathFollow3D3" instance=ExtResource("5_mxbpr")]
+
+[node name="SpinningPlatforms3" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.86912, 28.298)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms3"]
+curve = SubResource("Curve3D_nlkg7")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms3/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6301, 0, -3.25734)
+progress = 95.2401
+rotation_mode = 0
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms3/Path3D/PathFollow3D" instance=ExtResource("6_xlcqs")]
+
+[node name="PathFollow3D2" type="PathFollow3D" parent="Platforms/SpinningPlatforms3/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2081, -0.0757406, 12.6907)
+progress = 48.0525
+rotation_mode = 0
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms3/Path3D/PathFollow3D2" instance=ExtResource("6_xlcqs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="PathFollow3D3" type="PathFollow3D" parent="Platforms/SpinningPlatforms3/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2697, 0, -3.19128)
+progress = 128.14
+rotation_mode = 0
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms3/Path3D/PathFollow3D3" instance=ExtResource("5_mxbpr")]
+
+[node name="SpinningPlatforms4" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.1982, -0.729949, -26.702)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1066, 1.83281, 4.3017)
+curve = SubResource("Curve3D_3oeem")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms4/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.16339, -5.86912, -29.4446)
+rotation_mode = 0
+
+[node name="VirusBlock" parent="Platforms/SpinningPlatforms4/Path3D/PathFollow3D" instance=ExtResource("7_gacti")]
+transform = Transform3D(-0.999997, 0, -0.0022935, 0, 1, 0, 0.0022935, 0, -0.999997, 0, 0, 0)
+
+[node name="PathFollow3D2" type="PathFollow3D" parent="Platforms/SpinningPlatforms4/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77864, -5.86912, 18.7558)
+progress = 56.1449
+rotation_mode = 0
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms4/Path3D/PathFollow3D2" instance=ExtResource("9_e61as")]
+
+[node name="SpinningPlatforms5" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.367, -0.729949, -26.702)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms5"]
+curve = SubResource("Curve3D_4vroe")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(-0.999997, -1.78567e-06, 0.00224271, 5.68434e-14, 1, 0.000796209, -0.00224271, 0.000796208, -0.999997, -0.49852, 0.798972, -60.8925)
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D" instance=ExtResource("9_e61as")]
+transform = Transform3D(-0.999997, 0, -0.00224271, -1.78566e-06, 1, 0.000796205, 0.00224271, 0.000796207, -0.999997, 0, 0, 0)
+
+[node name="PathFollow3D7" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(-0.999997, -6.01271e-07, 0.00224271, 1.1844e-06, 1, 0.000796209, -0.00224271, 0.00079621, -0.999997, -0.613653, 0.758097, -9.55583)
+progress = 51.3368
+
+[node name="CheckpointPlatform" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D7" instance=ExtResource("9_5a46s")]
+transform = Transform3D(1, 1.7053e-12, -1.16415e-09, 0, 1, 0, 1.16415e-09, 0, 1, -7.62939e-06, -4.4883, -0.00357437)
+
+[node name="PathFollow3D2" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(-0.999997, -4.04194e-07, 0.00224271, 1.38148e-06, 1, 0.000796209, -0.00224271, 0.000796211, -0.999997, -0.728787, 0.717222, 41.7811)
+progress = 102.674
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D2" instance=ExtResource("9_e61as")]
+transform = Transform3D(-0.999997, 0, -0.00224271, -1.78566e-06, 1, 0.000796205, 0.00224271, 0.000796207, -0.999997, 0, 0, 0)
+
+[node name="PathFollow3D8" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(-0.00143974, 6.74965e-06, -0.999999, -0.000867482, 1, 7.9986e-06, 0.999999, 0.000867492, -0.00143973, 25.2838, 0.696895, 67.0859)
+progress = 154.011
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D8" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(1, -1.16415e-10, 0, 1.16415e-10, 1, -2.27374e-13, -1.16415e-10, -2.27374e-13, 1, -0.00466919, 5.38045, 4.57764e-05)
+
+[node name="PathFollow3D3" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(-0.00143974, 6.74959e-06, -0.999999, -0.000867482, 1, 7.99854e-06, 0.999999, 0.000867492, -0.00143973, 76.6191, 0.696485, 67.1599)
+progress = 205.347
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D3" instance=ExtResource("9_e61as")]
+transform = Transform3D(-0.999997, -1.16415e-10, -0.00224271, -1.78569e-06, 1, 0.000796205, 0.00224271, 0.000796207, -0.999997, 0.00553513, -6.38113, -4.57764e-05)
+
+[node name="PathFollow3D9" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(-0.00143974, 6.74959e-06, -0.999999, -0.000867482, 1, 7.99854e-06, 0.999999, 0.000867492, -0.00143973, 127.963, 0.696069, 67.2406)
+progress = 256.684
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D9" instance=ExtResource("9_e61as")]
+transform = Transform3D(-0.999997, -1.16415e-10, -0.00224271, -1.78569e-06, 1, 0.000796205, 0.00224271, 0.000796207, -0.999997, -0.00494766, 5.7033, 4.57764e-05)
+
+[node name="PathFollow3D4" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(0.999993, 7.84145e-05, 0.00370777, -7.54624e-05, 1, -0.00079633, -0.00370783, 0.000796044, 0.999993, 127.793, 0.736933, 15.9256)
+progress = 308.021
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D4" instance=ExtResource("9_e61as")]
+transform = Transform3D(-0.999997, 1.22782e-11, -0.00224271, -1.78564e-06, 1, 0.000796205, 0.00224271, 0.000796207, -0.999997, 0.000213623, -2.77044, 0.00220585)
+
+[node name="PathFollow3D10" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(0.999993, 7.84145e-05, 0.00370777, -7.54624e-05, 1, -0.00079633, -0.00370783, 0.000796044, 0.999993, 127.602, 0.777814, -35.4112)
+progress = 359.358
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D10" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(1, 2.75122e-11, 4.65661e-10, 4.54747e-13, 1, -5.82077e-11, 0, 0, 1, -0.000427246, 5.70876, -0.00454712)
+
+[node name="PathFollow3D5" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(-0.00408545, 6.47627e-06, 0.999992, 0.000724686, 1, -3.51563e-06, -0.999991, 0.000724666, -0.00408546, 102.175, 0.798611, -61.312)
+progress = 410.695
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D5" instance=ExtResource("9_e61as")]
+transform = Transform3D(-0.999997, 0, -0.00224271, -1.78566e-06, 1, 0.000796205, 0.00224271, 0.000796207, -0.999997, 0, 0, 0)
+
+[node name="PathFollow3D6" type="PathFollow3D" parent="Platforms/SpinningPlatforms5/Path3D"]
+transform = Transform3D(-0.00408557, 6.47629e-06, 0.999992, 0.000724686, 1, -3.51557e-06, -0.999991, 0.000724666, -0.00408557, 50.8384, 0.798791, -61.1022)
+progress = 462.032
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms5/Path3D/PathFollow3D6" instance=ExtResource("9_e61as")]
+transform = Transform3D(-0.999997, 0, -0.00224271, -1.78566e-06, 1, 0.000796205, 0.00224271, 0.000796207, -0.999997, 0, 0, 0)
+
+[node name="SpinningPlatforms6" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143.552, 7.1143, -48.7544)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms6"]
+curve = SubResource("Curve3D_hcvvx")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms6/Path3D"]
+transform = Transform3D(0.00508624, 0, -0.999987, 0, 1, 0, 0.999987, 0, 0.00508624, -23.4416, -7.1143, -23.192)
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms6/Path3D/PathFollow3D" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(0.00508481, 0, 0.999987, 0, 1, 0, -0.999987, 0, 0.00508481, 0, 5.69098, 0)
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms6" instance=ExtResource("9_e61as")]
+
+[node name="SpinningPlatforms7" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197.114, 15.9743, -48.7544)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms7"]
+curve = SubResource("Curve3D_hcvvx")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms7/Path3D"]
+transform = Transform3D(0.999992, 0, -0.0040638, 0, 1, 0, 0.0040638, 0, 0.999992, -23.5846, -7.1143, 11.9943)
+progress = 140.746
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms7/Path3D/PathFollow3D" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(0.00508481, 0, 0.999987, 0, 1, 0, -0.999987, 0, 0.00508481, 0, 0, 0)
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms7" instance=ExtResource("9_e61as")]
+
+[node name="SpinningPlatforms8" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197.114, -3.7293, 9.8792)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms8"]
+curve = SubResource("Curve3D_hcvvx")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms8/Path3D"]
+transform = Transform3D(-0.999979, 0, -0.00608454, 0, 1, 0, 0.00608454, 0, -0.999979, 24.4222, -7.1143, -18.4902)
+progress = 52.7797
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms8/Path3D/PathFollow3D" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(0.00508481, 0, 0.999987, 0, 1, 0, -0.999987, 0, 0.00508481, 0, 0, 0)
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms8" instance=ExtResource("9_e61as")]
+
+[node name="SpinningPlatforms9" type="Node3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 141.088, 13.8499, 9.8792)
+script = ExtResource("8_1ho8s")
+
+[node name="Path3D" type="Path3D" parent="Platforms/SpinningPlatforms9"]
+curve = SubResource("Curve3D_hcvvx")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/SpinningPlatforms9/Path3D"]
+transform = Transform3D(-0.00336245, 0, 0.999994, 0, 1, 0, -0.999994, 0, -0.00336245, 24.4748, -7.1143, 16.5347)
+progress = 87.9661
+
+[node name="VirusBlockSquare" parent="Platforms/SpinningPlatforms9/Path3D/PathFollow3D" instance=ExtResource("5_mxbpr")]
+transform = Transform3D(0.00508481, 0, 0.999987, 0, 1, 0, -0.999987, 0, 0.00508481, 0, 4.41936, 0)
+
+[node name="Core File Platform Base" parent="Platforms/SpinningPlatforms9" instance=ExtResource("9_e61as")]
+
+[node name="KillZone" parent="." instance=ExtResource("7_nh1i6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.9953, -57.9833, 0)
+
+[node name="ExitPlatform" parent="." node_paths=PackedStringArray("level_master") instance=ExtResource("11_vxhpe")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.09532, 14.3671, -68.9005)
+level_master = NodePath("../LevelMaster")
+
+[node name="ui" parent="." instance=ExtResource("13_lial7")]
+
+[node name="SetDressing" type="Node" parent="."]
+
+[node name="Background + Spherebox" type="Node" parent="SetDressing"]
+
+[editable path="Enviroment"]

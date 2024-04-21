@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba5mnbnpx8aqu"]
+
+[ext_resource type="Script" path="res://scripts/level_master.gd" id="1_sqxwx"]
+[ext_resource type="Resource" uid="uid://btaop3mpwntrw" path="res://resources/numOfViruses.tres" id="2_n6b35"]
+[ext_resource type="Resource" uid="uid://c8siirvse60ub" path="res://resources/numOfCores.tres" id="3_jxdkg"]
+[ext_resource type="Resource" uid="uid://b8hhe0pmqlnls" path="res://resources/level_timer.tres" id="4_juucc"]
+
+[node name="LevelMaster" type="Node"]
+script = ExtResource("1_sqxwx")
+numOfViruses = ExtResource("2_n6b35")
+numOfCores = ExtResource("3_jxdkg")
+level_timer = ExtResource("4_juucc")
+starting_time = 30
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

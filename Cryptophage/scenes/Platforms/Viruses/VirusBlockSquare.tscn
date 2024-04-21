@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ti2fdkoo3h3q"]
+
+[ext_resource type="PackedScene" uid="uid://du50l46anr0j3" path="res://scenes/Platforms/Viruses/VirusBlockBase.tscn" id="1_ywsr1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjk45"]
+size = Vector3(8.59103, 13.9385, 8.7382)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgooc"]
+albedo_color = Color(1, 0.0941176, 0.0980392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_col7x"]
+material = SubResource("StandardMaterial3D_mgooc")
+size = Vector3(8, 100, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lasnb"]
+size = Vector3(8.22812, 1, 8.10666)
+
+[node name="VirusBlockSquare" instance=ExtResource("1_ywsr1")]
+
+[node name="CollitionBox" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180609, -6.69923, 0.15713)
+shape = SubResource("BoxShape3D_vjk45")
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -49.979, 0)
+mesh = SubResource("BoxMesh_col7x")
+
+[node name="Hitbox" parent="PlayerEnterComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054947, 0, 0.0552213)
+shape = SubResource("BoxShape3D_lasnb")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwsnkf6sw66r3"]
+
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_y361y"]
+[ext_resource type="Resource" uid="uid://b8hhe0pmqlnls" path="res://resources/level_timer.tres" id="2_s61jm"]
+
+[node name="ui" type="Control" node_paths=PackedStringArray("level_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_y361y")
+level_timer = ExtResource("2_s61jm")
+level_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Number"
+horizontal_alignment = 1
+vertical_alignment = 1

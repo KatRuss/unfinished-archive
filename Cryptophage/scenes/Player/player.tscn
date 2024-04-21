@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1cych6vncump"]
+
+[ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_cj1f7"]
+[ext_resource type="Script" path="res://scripts/Player/PlayerCam.gd" id="2_618li"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t74mh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_af2p1"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_cj1f7")
+max_speed = 10.0
+ground_jump_velocity = 10.0
+
+[node name="CollisionComponent" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_t74mh")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("CapsuleMesh_af2p1")
+
+[node name="CameraSystem" type="Node3D" parent="."]
+
+[node name="TwistPivot" type="Marker3D" parent="CameraSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92, 0)
+gizmo_extents = 0.79
+
+[node name="PitchPivot" type="Marker3D" parent="CameraSystem/TwistPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+
+[node name="PlayerCam" type="Camera3D" parent="CameraSystem/TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+script = ExtResource("2_618li")
+mouse_sensitivity = 0.002
